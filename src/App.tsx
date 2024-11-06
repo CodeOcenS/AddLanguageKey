@@ -35,7 +35,7 @@ function App() {
         <input type="file" id="file" accept='.xlsx, .xls' onChange={onImportExcel} />
       </div>
       <p className="read-the-docs">
-        选择多语言文件
+        选择多语言excel文件进行多语言映射。
       </p>
     </>
   )

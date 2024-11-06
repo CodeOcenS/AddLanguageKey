@@ -1,24 +1,34 @@
 {
-    "manifest_version": 3,
-    "name": "vite-ts-react-test",
-    "version": "1.0",
-    "description": "",
-    "action": {
-        "default_popup": "index.html"
-    },
-    "permissions": [
-        "storage",
-        "tabs",
-        "activeTab"
-    ],
-    "host_permissions": [
-      "http://*/*",
-      "https://*/*"
-    ],
-    "content_scripts": [
-        {
-          "matches": ["<all_urls>"],
-          "js": ["content-script.js"]
-        }
+  "manifest_version": 3,
+  "name": "AddLanguageKey",
+  "version": "1.0.0",
+  "description": "在 Axure 需求中添加多语言 Key",
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "permissions": [
+    "storage",
+    "tabs",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "http://*.axshare.com/*",
+    "https://*.axshare.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*.axshare.com/*",
+         "https://*.axshare.com/*"
+      ],
+      "js": [
+        "content-script.js"
       ]
-  }
+    }
+  ]
+}
