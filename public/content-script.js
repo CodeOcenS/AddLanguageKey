@@ -6,7 +6,7 @@ chrome.runtime.onMessage.addListener((e) => {
       const keyEnArr = result.excelData; // 获取到的是 json数组
       console.log("Value currently is:" + JSON.stringify(keyEnArr));
       if (keyEnArr.length > 0) {
-      replaceTextInElement(document.body, keyEnArr);
+        addKeyToElement(keyEnArr);
       }
     });
   }
@@ -36,22 +36,24 @@ function getKeyEn(object) {
       return null;
     }
 }
-function replaceTextInElement(element, keyEnArr) {
-  if (element.nodeType === Node.TEXT_NODE) {
+function addKeyToElement(keyEnArr) {
+  var iframe = document.getElementById("mainFrame"); // 先获取 iframe.
+  // 获取页面中所有 p 和 span 标签
+  var x = iframe.contentDocument.querySelectorAll("span, p");
+	for (var i = 0; i < x.length; ++i) {
+		const element =  x[i];
     for (const obj of keyEnArr) {
       const fixObj = getKeyEn(obj);
       if (fixObj){
       const key = fixObj.key;
       const en = fixObj.en;
-      console.log(key, en);
-      if (element.nodeValue.includes(en)) {
-        element.nodeValue = element.nodeValue.replace(new RegExp(en, 'g'), `${key} ${en}`);
+      const innerText = element.innerText;
+		if (innerText === en) {
+        element.innerText = element.innerText.replace(new RegExp(en, 'g'), `【${key}】${en}`);
       }
     }
-    }
-  } else {
-    element.childNodes.forEach(child => replaceTextInElement(child, keyEnArr));
   }
+}
 }
 
 
