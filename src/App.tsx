@@ -37,6 +37,7 @@ function App() {
       <p className="read-the-docs">
         选择多语言excel文件进行多语言映射。
       </p>
+      <p className="read-the-docs">已知问题：换行文本无法匹配， 少部分key可能无法匹配</p>
     </>
   )
 }
