@@ -42,14 +42,25 @@ function addKeyToElement(keyEnArr) {
   var x = iframe.contentDocument.querySelectorAll("span, p");
 	for (var i = 0; i < x.length; ++i) {
 		const element =  x[i];
-    for (const obj of keyEnArr) {
-      const fixObj = getKeyEn(obj);
+    for (const fixObj of keyEnArr) {
+      //const fixObj = getKeyEn(obj);
       if (fixObj){
       const key = fixObj.key;
       const en = fixObj.en;
       const innerText = element.innerText;
 		if (innerText === en) {
-        element.innerText = element.innerText.replace(new RegExp(en, 'g'), `【${key}】${en}`);
+      if (fixObj.count > 1) {
+        element.innerText = `【${key}(等${fixObj.count}个)】${innerText}`;
+      } else {
+        element.innerText = `【${key}】${innerText}`;
+      }
+      // 获取新的宽高
+const newWidth = element.offsetWidth;
+const newHeight = element.offsetHeight;
+
+// 设置新的样式
+element.style.width = newWidth + 'px';
+element.style.height = newHeight + 'px';
       }
     }
   }
