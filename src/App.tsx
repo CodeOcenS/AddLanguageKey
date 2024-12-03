@@ -45,7 +45,7 @@ function App() {
   };
   return (
     <>
-      <h1>多语言映射</h1>
+      <h3>多语言映射</h3>
       <div>
         <input type="file" id="file" accept='.xlsx, .xls' onChange={onImportExcel} />
       </div>
